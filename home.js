@@ -216,6 +216,36 @@ document.getElementById('transfer-money-btn').addEventListener('click', function
     resetFields(['user-account-number', 'transfer-pin-number', 'amount-to-transfer'])
 })
 
+// get bonus form section
+document.getElementById('get-bonus-btn').addEventListener('click', function(event){
+    event.preventDefault()
+
+    const availableBalance = getInnerText('available-balance')
+    const getBonusInput = getInputValueNumber("get-bonus")
+    let getBonus ;
+    if(!getBonusInput || getBonusInput <= 0 || getBonusInput > 100){
+        alert("Invalid⚠️! Please enter 1-100 to get bonus")
+        return;
+    }
+    else if(getBonusInput){
+        getBonus = (availableBalance / 100) * getBonusInput;
+    }
+    
+    const newAvailableBalance = availableBalance + getBonus
+    setInnerText(newAvailableBalance)
+    alert(`Congratulations!! You got $${getBonus} bonus.`)
+
+
+    const data = {
+        name: "Get Bonus",
+        amount: getBonus,
+        date: new Date().toLocaleTimeString()
+    }
+    transactionData.push(data)
+
+    resetFields(['get-bonus'])
+})
+
 // bill pay form
 document.getElementById('bill-pay-btn').addEventListener('click', function (event) {
     event.preventDefault()
