@@ -320,6 +320,18 @@ document.getElementById('main-btn-transactions').addEventListener('click', funct
         // transactionContainer.appendChild(div)   //latest ta niche niche bosbe
         transactionContainer.prepend(div)   //latest ta upore upore bosbe
     }
+    if(transactionContainer.innerText.trim() === ""){
+            const h1 = document.createElement('h1')
+            h1.classList.add('text-xl','font-medium', 'text-center', 'no-transaction', 'mt-5', 'text-gray-400')
+            h1.innerText = "No transaction"
+            transactionContainer.appendChild(h1)
+        }
+        else{
+            const noTransactionMsg = transactionContainer.querySelector('.no-transaction')
+            if(noTransactionMsg){
+                transactionContainer.removeChild(noTransactionMsg)
+            }
+        }
 })
 
 
